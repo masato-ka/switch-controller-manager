@@ -17,7 +17,7 @@ jobs:
           name: Build
           command: |
             echo "$GCP_SERVICE_ACCOUNT_KEY_TEST" | base64 -d > "$HOME/gcp-service-account-key.json"
-            export GOOGLE_APPLICATION_CREDENTIAL=$HOME/gcp-service-account-key.json
+            export GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp-service-account-key.json
             ./mvnw package
 
       - deploy:
