@@ -2,12 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      image: google/cloud-sdk:alpin
+      - image: google/cloud-sdk:alpine
     workingdirectory: ~/switch-controll-manager
     steps:
       - run:
           name: Install JDK
-          command:
+          command: |
             apk --update add openjdk8
             gcloud components install app-engine-java
 
@@ -25,3 +25,4 @@ jobs:
               echo "$GCP_SERVICE_ACCOUNT_KEY" | base64 -d > "$HOME/gcp-service-account-key.json"
               gcloud auth activate-service-account --key-file "$HOME/gcp-service-account-key.json"
               mvnw appengine:deploy
+            fi
